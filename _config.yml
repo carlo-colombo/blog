@@ -69,4 +69,6 @@ disqus_shortname: litblog-it
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type:
+  type: git
+  repo: git@github.com:carlo-colombo/carlo-colombo.git
+  branch: master
