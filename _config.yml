@@ -12,7 +12,7 @@ timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: https://carlo-colombo.github.io
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -71,4 +71,8 @@ disqus_shortname: litblog-it
 deploy:
   type: git
   repo: git@github.com:carlo-colombo/carlo-colombo.github.io.git
-  # branch: master
+
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20
