@@ -1,7 +1,12 @@
 ---
 title: 'The 3 E: Elixir, Exrm, and Environment variables'
-tags: [elixir, conform, exrm]
+tags:
+  - elixir
+  - conform
+  - exrm
+date: 2016-05-04 21:05:43
 ---
+
 
 ### Intro
 I’m building a bot for Telegram, once make a build with exrm I found myself some problem configuring the telegram api key using environment variables. I decided to share what I found because my google foo was not helpful at all.
