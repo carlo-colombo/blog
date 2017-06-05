@@ -1,13 +1,7 @@
 ---
-title: Serverless Telegram Bot on GC functions
-tags:
-  - telegram
-  - gcp
-  - serverless
-  - google cloud functions
-date: 2017-06-05 12:22:40
+title: Serverless Telegram Bot on GC Functions
+tags: [telegram, gcp, serverless, google cloud functions]
 ---
-
 
 I played for some time with the idea of having a telegram bot run _serverless_ in the cloud. Obviously the code run on some server but it is not necessary to care to provision, deploy, starting the application, etc. All you care about is **your code**.
 
@@ -93,7 +87,7 @@ curl -X POST \
        "text": "hello world"
      }
    }' \
-   http://localhost:8010/litapp-165019/us-central1/echoBot
+   http://localhost:8010/PROJECT_ID/us-central1/echoBot
 
 # To tail logs
 watch functions logs read
@@ -104,7 +98,7 @@ watch functions logs read
 
 Before deploy the function is required to create a Cloud Storage bucket where the function will be stored
 
-```bash
+```sh
 gsutil mb -c regional -l us-central1 gs://unique-bucket-name
 
 gcloud beta functions deploy function_name \
@@ -117,7 +111,7 @@ gcloud beta functions deploy function_name \
 
 Deploying the function with the http trigger will return an url to trigger the function. The url would look like `https://<GCP_REGION>-<PROJECT_ID>.cloudfunctions.net/function_name`. Use this url to set up a web hook for your bot on telegram. You can check more information on webhook on the [Telegram API documentation](https://core.telegram.org/bots/api#setwebhook)
 
-```bash
+```sh
 curl -X POST \
   -H "Content-Type: application/json" \
   -d '{
