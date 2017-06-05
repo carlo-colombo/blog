@@ -41,13 +41,13 @@ The first thing to do is to define a macro and extract the function definition (
     # meter will contain the body of the function that will be defined by the macro
     metered = quote do
       # quote and unquote allow to switch context,
-      # simplyfing a lot quoted code will be compiled while
+      # simplyfing a lot quoted code will run when the function is called
       # unquoted code run at compile time (when the macro is called)
       values = unquote(
         args
         |> Enum.map(fn arg ->  quote do
             # allow to access a value ad runtime knowing the name
-            # elixr macro are hygienic so it's necessary to mark it
+            # elixir macros are hygienic so it's necessary to mark it
             # explicitly
             var!(unquote(arg))
           end
@@ -57,7 +57,7 @@ The first thing to do is to define a macro and extract the function definition (
       # Match argument names with their own values at call time
       map = Enum.zip(unquote(names), values)
 
-      # b
+      # wrap the original function call with a try to track errors too
       try do
         to_return = unquote(body)
         track(unquote(function), map)
@@ -69,6 +69,7 @@ The first thing to do is to define a macro and extract the function definition (
       end
     end
 
+    # define a function with the same name and arguments and with the augmented body
     quote do
       def(unquote(fundef),unquote([do: metered]))
     end
