@@ -1,5 +1,5 @@
 ---
-title: Serverless Telegram Bot on GC functions
+title: Serverless Telegram Bot on GC Functions
 tags: [telegram, gcp, serverless, google cloud functions]
 ---
 
