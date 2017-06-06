@@ -12,7 +12,7 @@ Functions are going to remove some friction from our code, when the request is s
 The example code of the project can be found at https://github.com/carlo-colombo/serverless-telegram-bot-gc-functions
 
 ### Prerequisites
-* Goole Cloud account and a project. https://cloud.google.com/resource-manager/docs/creating-managing-projects
+* Google Cloud account and a project. https://cloud.google.com/resource-manager/docs/creating-managing-projects
 * Enable Google Cloud Functions and RuntimeConfig API from the API manager.
 * Get a telegram bot token, ask it to the [BotFather](https://telegram.me/BotFather).
 
