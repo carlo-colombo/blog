@@ -5,7 +5,9 @@ tags:
   - macro
   - google analytics
 published: true
+date: 2017-06-10 09:10:30
 ---
+
 After I decided to make public a telegram bot to monitor bus time in Dublin ([@dublin_bus_bot](https://telegram.me/dublin_bus_bot)). Before the release I became curious to see how many people will use it (spoiler: just an handful) and I thought that would be a good idea to track the use on google analytics.
 
 ### Overview
