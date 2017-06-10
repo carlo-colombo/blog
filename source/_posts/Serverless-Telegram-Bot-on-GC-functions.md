@@ -1,6 +1,7 @@
 ---
 title: Serverless Telegram Bot on GC Functions
 tags: [telegram, gcp, serverless, google cloud functions]
+date: 2017-06-05 09:10:30
 ---
 
 I played for some time with the idea of having a telegram bot run _serverless_ in the cloud. Obviously the code run on some server but it is not necessary to care to provision, deploy, starting the application, etc. All you care about is **your code**.
