@@ -5,15 +5,16 @@ tags:
   - macro
 published: true
 ---
-Recently I decided to make public a telegram bot I did to monitor bus time in Dublin ([@dublin_bus_bot](https://telegram.me/dublin_bus_bot)). Before the release I became curious to see how many people will use it (spoiler: just an handful) and I thought that would be nice to track the use on google analytics.
+After I decided to make public a telegram bot to monitor bus time in Dublin ([@dublin_bus_bot](https://telegram.me/dublin_bus_bot)). Before the release I became curious to see how many people will use it (spoiler: just an handful) and I thought that would be a good idea to track the use on google analytics.
 
 ### Overview
 
-Google analytics provide a measurement protocol that can be used to track things that are different from websites (mobile apps, IOT). At the moment no elixir client exists for this protocol (and it would not be anything more than an api wrapper). My plan is to make call to the Ga TK endpoint with httpoison but I'd prefer to not have to call the tracking function for every single bot command.
+Google analytics provide a measurement protocol that can be used to track things that are different from websites (mobile apps, IOT). At the moment no elixir client exists for this protocol (and it would not be anything more than an api wrapper). My plan is to make call to the Google Analytics TK endpoint with [HTTPOison](https://github.com/edgurgel/httpoison) but I'd prefer to not have to call the tracking function for every single bot command.
 
-One of the feature that I prefer of the elixir are macros, macros allow to generate code at compile time. My plan is to define a macro that looking like a function definition would define a function with the same body and with an additional call to the track function. I decided this approach because seems more idiomatics than try to use decorator syntax typical of other languages (@decorator at least in python and javascript)
-``` elixir
-defmeter sample_function(arg1, arg2) do
+One of the feature that I prefer of the elixir are macros, macros allow to generate code at compile time. I decided to define a macro that looking like a function definition would define a function with the same body and with an additional call to the track function. I decided this approach because seems more idiomatics than using the [decorator syntax](https://github.com/arjan/decorator) typical of other languages (`@decorator` at least in python and javascript).
+
+```elixir
+defmetered sample_function(arg1, arg2) do
     IO.inspect([arg1, arg2])
 end
 
@@ -28,12 +29,29 @@ end
 
 ### Implementation
 
-The first thing to do is to define a macro and extract the function definition (function name, and function arguments names).
+I implemented this approach in [meter](https://hex.pm/packages/meter) to use in the telegram bot I wrote.
 
-``` elixir
-  # A macro definitio can use pattern matching to destructure the arguments as
-  # is possible with a normal function
-  defmacro defmeter({function,_,args} = fundef, [do: body]) do
+```elixir
+  @doc """
+  Replace a function definition, automatically tracking every call to the function
+  on google analytics. It also track exception with the function track_error.
+  This macro intended use is with a set of uniform functions that can be concettualy
+  mapped to pageviews (eg: messaging bot commands).
+  
+  Example:
+  
+      defmetered function(arg1, arg2), do: IO.inspect({arg1,arg2})
+  
+      function(1,2)
+      
+  will call track with this parameters
+      
+      track(:function, [arg1: 1, arg2: 2])
+  
+  Additional parameters will be loaded from the configurationd
+  """
+  # A macro definition can use pattern matching to destructure the arguments
+  defmacro defmetered({function,_,args} = fundef, [do: body]) do
     # arguments are defined in 3 elements tuples
     # this extract the arguments names in a list
     names = Enum.map(args, &elem(&1, 0))
@@ -46,7 +64,7 @@ The first thing to do is to define a macro and extract the function definition (
       values = unquote(
         args
         |> Enum.map(fn arg ->  quote do
-            # allow to access a value ad runtime knowing the name
+            # allow to access a value at runtime knowing the name
             # elixir macros are hygienic so it's necessary to mark it
             # explicitly
             var!(unquote(arg))
@@ -75,3 +93,8 @@ The first thing to do is to define a macro and extract the function definition (
     end
   end
 ```
+
+### Conclusion
+
+Elixir macros are a powerful tool to abstract away some functionality or to write DSLs. They require a bit of time to wrap head around, in particular with the context swith, but it totally worth the hassle if you can reduce the clutter in your code base.
+
