@@ -97,7 +97,7 @@ I implemented this approach in [meter](https://hex.pm/packages/meter) to use in 
   end
 ```
 
-### Conclusion
+### Conclusions
 
 Elixir macros are a powerful tool to abstract away some functionality or to write DSLs. They require a bit of time to wrap head around, in particular with the context swith, but it totally worth the hassle if you can reduce the clutter in your code base.
 
