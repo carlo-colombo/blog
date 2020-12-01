@@ -4,7 +4,9 @@ tags:
   - kubernetes
   - tiddlywiki
   - k3s
+date: 2020-12-02 00:02:43
 ---
+
 
 ## Discovery of TiddlyWiki
 
