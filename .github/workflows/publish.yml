@@ -16,7 +16,7 @@ jobs:
                   submodules: true
             - name: Publish Site
               uses: chabad360/hugo-gh-pages@master
-              repo: carlo-colombo/carlo-colombo.github.io
-              branch: master
               with:
                   githubToken: ${{ secrets.PERSONAL_TOKEN }}
+                  repo: carlo-colombo/carlo-colombo.github.io
+                  branch: master
