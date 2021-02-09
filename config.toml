@@ -1,0 +1,24 @@
+baseURL = "http://example.org/"
+languageCode = "en-us"
+title = "litblog"
+theme = "kiss"
+
+[params.social.config]
+platforms = ["github","linkedin"]
+
+
+[params.info]
+enableSocial = true # Adds OpenGraph and Twitter cards
+homeTitle = "" # Title for home page
+related = true # Includes related articles at the bottom of the article
+codeCopy = true # Add copy button above code blocks
+taxonomiesCount = true # Add taxonomies count
+
+[params.social]
+github = "carlo-colombo"
+linkedin = "carlocolombo"
+
+[params.sections_left]
+"/about" = "About me"
+
+
