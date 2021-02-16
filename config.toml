@@ -22,4 +22,5 @@ linkedin = "carlocolombo"
 [params.sections_left]
 "/about" = "About me"
 
-
+[params.assets]
+customCSS = ["css/custom.css"]

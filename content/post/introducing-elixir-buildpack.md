@@ -9,6 +9,8 @@ tags:
     - buildpack
 ---
 
+{{< figure src="/images/iceland-top.jpg" alt="abstract image" >}}
+
 ## TL;DR;
 
 ```shell
@@ -44,6 +46,8 @@ To build an OCI image is possibly not enough to just define a buildpack, what I 
 The runtime buildpacks contribuite erlang and elixir in the build phase, while the mix buildpack assemble a release starting from the source code. Only the final release will be present in the final OCI image, while the other dependencies are not going to be included. This achieves a similar result as multistage docker file where the initial stages provide the build dependencies and build the source code while adding only the built code to the final stage (with the needed runtime dependencies).
 
 Notes: The buildpack I created are not really portable to other stacks as they require to have erlang and elixir available on the build image. I did this to avoid downloading over and over the Erlang and Elixir runtime, but probably a more idiomatic way of achieving it could exist.
+
+{{< figure src="/images/iceland-middle.jpg" alt="abstract image" >}}
 
 ## Usage
 
@@ -105,3 +109,5 @@ Adding a `DEBUG` environment variable with any value runs the scripts with `set 
 docker exec -it <container> \
     /layers/io.github.carlo-colombo.mix-release/release/bin/hello_phoenix remote
 ```
+
+{{< figure src="/images/iceland-bottom.jpg" alt="abstract image" >}}
