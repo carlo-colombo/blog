@@ -1,7 +1,8 @@
 ---
 title: 'Introducing Elixir Buildpack'
 date: 2021-02-10T21:55:36+01:00
-summary: Cloud Native Buildpack for Elixir
+summary: This is something I am working on (and off) for the last year, it started as a way to play with Elixir and Cloud Native Buildpacks but then I started to use it to create images to deploy on a small [k3s Kubernetes cluster I maintain](https://github.com/carlo-colombo/deployment/blob/master/spec/images.yml#L17-L29).
+
 tags:
     - elixir
     - docker
