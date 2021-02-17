@@ -2,8 +2,6 @@
 title: about
 ---
 
-Full stack developer from DevOps till the tip of CSS.
-
 These are some of my open source projects, more at https://github.com/carlo-colombo
 
 ---
